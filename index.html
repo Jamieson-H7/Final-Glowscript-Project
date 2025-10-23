@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <!-- jQuery must load before GlowScript -->
+  <script src="https://www.glowscript.org/lib/jquery/3.1/jquery.min.js"></script>
+  <link   href="https://www.glowscript.org/lib/jquery/3.1/jquery-ui.min.css" rel="stylesheet"/>
+  <script src="https://www.glowscript.org/lib/jquery/3.1/jquery-ui.min.js"></script>
+
+  <!-- GlowScript core -->
+  <link   href="https://www.glowscript.org/lib/glow.3.2.min.css" rel="stylesheet"/>
+  <script src="https://www.glowscript.org/lib/glow.3.2.min.js"></script>
+  <script src="https://www.glowscript.org/lib/RSrun.3.2.min.js"></script>
+
+  <style>
+    html, body { height:100%; margin:0; background:#f5f5f5; }
+    #glowscript { height:100vh; width:100vw; }
+  </style>
+</head>
+<body>
+  <div id="glowscript" class="glowscript"></div>
+
+  <!-- Tell GlowScript where to render -->
+  <script>
+    window.__context = { glowscript_container: $("#glowscript") };
+  </script>
+
+  <!-- Your GlowScript VPython code -->
+  <script type="text/python">
+from vpython import *
+
+scene = canvas(width=900, height=540, background=color.gray(0.95),
+               title="GlowScript VPython on GitHub Codespaces")
+
+ball = sphere(pos=vector(2,0,0), radius=0.4, color=color.red, make_trail=True)
+t, dt = 0.0, 0.02
+while t < 30:
+    rate(60)
+    ball.pos = vector(2*cos(t), 2*sin(t), 0)
+    t += dt
+  </script>
+</body>
+</html>
